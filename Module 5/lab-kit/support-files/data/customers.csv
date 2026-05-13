@@ -1,0 +1,7 @@
+CustomerID,CustomerName,Region,CustomerSegment,IsActive
+C5001,Northwind Outfitters,North,Enterprise,Y
+C5002,Contoso Bikes Store,West,Enterprise,Y
+C5003,Alpine Sports Hub,South,SMB,Y
+C5004,City Cycle House,East,SMB,Y
+C5005,Adventure Works Outlet,North,SMB,Y
+C5006,Fabrikam Trails,West,SMB,Y

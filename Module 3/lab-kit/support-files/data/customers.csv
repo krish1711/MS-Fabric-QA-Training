@@ -1,0 +1,5 @@
+CustomerID,CustomerName,Region,CustomerType,IsActive
+C3001,Northwind Outfitters,North,Enterprise,Y
+C3002,Contoso Bikes Store,West,Enterprise,Y
+C3003,Alpine Sports Hub,South,SMB,Y
+C3004,City Cycle House,East,SMB,Y

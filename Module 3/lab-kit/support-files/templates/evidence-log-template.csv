@@ -1,0 +1,9 @@
+Step,Asset,Action,Observation,Evidence Type,Follow-up Needed
+File upload,Lakehouse files,Reviewed uploaded support files,,,
+Lakehouse base,Lakehouse tables,Reviewed base Delta tables,,,
+Lakehouse history,Lakehouse update notebook,Reviewed Delta history output,,,
+Lakehouse validation,Lakehouse SQL endpoint,Ran Lakehouse validation queries,,,
+Warehouse base,Warehouse tables,Reviewed base tables and row counts,,,
+CTAS validation,Warehouse SQL editor,Validated CTAS output table,,,
+MERGE validation,Warehouse SQL editor,Validated post-MERGE state,,,
+Reconciliation,Lakehouse and Warehouse,Compared final outputs across both surfaces,,,

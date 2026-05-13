@@ -1,0 +1,8 @@
+EvidenceID,TestArea,StepName,ObservedResult,ExpectedResult,Status,Notes
+E01,Pipeline,Failed first run,,,,
+E02,Monitoring,Fast versus slow duration comparison,,,,
+E03,Pipeline,Successful rerun,,,,
+E04,Lakehouse,Curated table validation,,,,
+E05,Warehouse,SQL validation results,,,,
+E06,Automation,Observed results file created,,,,
+E07,Automation,Pytest suite execution,,,,

@@ -1,0 +1,7 @@
+ProductID,ProductName,Category,StandardPrice
+P200,Trail Helmet,Accessories,45.00
+P201,Road Bike,Bikes,1200.00
+P202,Mountain Bike,Bikes,1650.00
+P203,Cycling Jersey,Apparel,60.00
+P204,Water Bottle,,15.00
+P205,Commuter Bike,Bikes,980.00

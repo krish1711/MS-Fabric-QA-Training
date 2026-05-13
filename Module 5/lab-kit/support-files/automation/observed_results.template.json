@@ -1,0 +1,25 @@
+{
+  "pipeline": {
+    "run_1_status": "REPLACE_ME",
+    "run_2_status": "REPLACE_ME",
+    "fast_activity_status": "REPLACE_ME",
+    "slow_activity_status": "REPLACE_ME",
+    "threshold_activity_initial_status": "REPLACE_ME",
+    "threshold_activity_rerun_status": "REPLACE_ME",
+    "fast_duration_seconds": 0,
+    "slow_duration_seconds": 0,
+    "slow_activity_longer_than_fast": false
+  },
+  "warehouse": {
+    "factsales_count": 0,
+    "total_sales": 0.0,
+    "order_count": 0,
+    "average_order_value": 0.0,
+    "region_totals": {
+      "East": { "order_count": 0, "total_sales": 0.0 },
+      "North": { "order_count": 0, "total_sales": 0.0 },
+      "South": { "order_count": 0, "total_sales": 0.0 },
+      "West": { "order_count": 0, "total_sales": 0.0 }
+    }
+  }
+}

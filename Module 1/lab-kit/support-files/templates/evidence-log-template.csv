@@ -1,0 +1,10 @@
+Step,Asset,Action,Observation,Evidence Type,Follow-up Needed
+Workspace review,Workspace,Reviewed workspace item list,,, 
+Lakehouse files,Lakehouse,Reviewed uploaded files,,, 
+Lakehouse tables,Lakehouse,Reviewed Delta tables,,, 
+Lakehouse query,Lakehouse SQL endpoint,Ran validation queries,,, 
+Warehouse review,Warehouse,Reviewed tables and schemas,,, 
+Warehouse query,Warehouse SQL editor,Ran validation queries,,, 
+Pipeline review,Pipeline,Reviewed activities and run history,,, 
+Semantic/report review,Semantic model or report,Reviewed visible business-facing output,,, 
+Isolation review,Workspace and permissions,Documented isolation assumptions,,, 

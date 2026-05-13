@@ -1,0 +1,8 @@
+EvidenceID,TestArea,StepName,ObservedResult,ExpectedResult,Status,Notes
+E01,Pipeline,Initial pipeline run,,,,
+E02,Pipeline,Successful rerun,,,,
+E03,Lakehouse,Curated tables validation,,,,
+E04,Warehouse,SQL validation queries,,,,
+E05,Report,KPI and matrix validation,,,,
+E06,Security,NorthRole view-as validation,,,,
+E07,Security,WestRole view-as validation,,,,

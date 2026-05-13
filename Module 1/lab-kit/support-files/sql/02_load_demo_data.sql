@@ -1,0 +1,29 @@
+INSERT INTO dbo.Customers (CustomerID, CustomerName, Region, CustomerType, IsActive) VALUES
+('C1001', 'Northwind Outfitters', 'North', 'Enterprise', 'Y'),
+('C1002', 'Contoso Bikes Store', 'West', 'Enterprise', 'Y'),
+('C1003', 'Alpine Sports Hub', 'South', 'SMB', 'Y'),
+('C1004', 'City Cycle House', 'East', 'SMB', 'Y'),
+('C1005', 'Summit Outdoor Retail', 'North', 'Enterprise', 'Y'),
+('C1006', 'Urban Wheels', 'West', 'SMB', 'Y');
+
+INSERT INTO dbo.Products (ProductID, ProductName, Category, StandardPrice) VALUES
+('P100', 'Trail Helmet', 'Accessories', 45.00),
+('P101', 'Road Bike', 'Bikes', 1200.00),
+('P102', 'Mountain Bike', 'Bikes', 1650.00),
+('P103', 'Cycling Jersey', 'Apparel', 60.00),
+('P104', 'Water Bottle', 'Accessories', 15.00),
+('P105', 'Commuter Bike', 'Bikes', 980.00);
+
+INSERT INTO dbo.SalesOrders (OrderID, OrderDate, CustomerID, ProductID, Quantity, UnitPrice, OrderAmount, OrderStatus) VALUES
+('SO10001', '2026-01-05', 'C1001', 'P101', 2, 1200.00, 2400.00, 'Shipped'),
+('SO10002', '2026-01-06', 'C1002', 'P103', 5, 60.00, 300.00, 'Shipped'),
+('SO10003', '2026-01-08', 'C1003', 'P104', 10, 15.00, 150.00, 'Processing'),
+('SO10004', '2026-01-10', 'C1004', 'P105', 1, 980.00, 980.00, 'Shipped'),
+('SO10005', '2026-01-11', 'C1005', 'P102', 1, 1650.00, 1650.00, 'Processing'),
+('SO10006', '2026-01-12', 'C1006', 'P100', 8, 45.00, 360.00, 'Cancelled'),
+('SO10007', '2026-01-14', 'C1001', 'P103', 12, 58.00, 696.00, 'Shipped'),
+('SO10008', '2026-01-15', 'C1002', 'P101', 1, 1180.00, 1180.00, 'Processing'),
+('SO10009', '2026-01-18', 'C1003', 'P105', 2, 950.00, 1900.00, 'Shipped'),
+('SO10010', '2026-01-20', 'C1004', 'P104', 20, 14.00, 280.00, 'Shipped'),
+('SO10011', '2026-01-22', 'C1005', 'P102', 2, 1600.00, 3200.00, 'Processing'),
+('SO10012', '2026-01-25', 'C1006', 'P100', 4, 45.00, 180.00, 'Shipped');

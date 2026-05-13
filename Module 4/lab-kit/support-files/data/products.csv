@@ -1,0 +1,6 @@
+ProductID,ProductName,Category,UnitPrice,IsActive
+P400,Trail Helmet,Accessories,45,Y
+P401,Road Bike,Bikes,1200,Y
+P402,Mountain Bike,Bikes,1500,Y
+P403,Cycling Jersey,Apparel,60,Y
+P404,Water Bottle,Accessories,15,Y

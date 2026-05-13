@@ -1,0 +1,4 @@
+OrderID,OrderDate,CustomerID,ProductID,Quantity,UnitPrice,OrderAmount,OrderStatus
+SO20008,2026-02-04,C2001,P205,1,1100.00,1100.00,Shipped
+SO20004,2026-02-10,C2004,P205,1,980.00,980.00,Shipped
+SO20009,2026-02-16,C2003,P204,4,15.00,60.00,PendingReview

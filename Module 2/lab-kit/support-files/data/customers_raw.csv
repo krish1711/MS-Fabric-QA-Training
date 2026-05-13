@@ -1,0 +1,7 @@
+CustomerID,CustomerName,Region,CustomerType,IsActive
+C2001,Northwind Outfitters,North,Enterprise,Y
+C2002,Contoso Bikes Store,West,Enterprise,Y
+C2003,Alpine Sports Hub,South,SMB,Y
+C2004,City Cycle House,East,SMB,Y
+C2005,Summit Outdoor Retail,,Enterprise,Y
+C2006,Urban Wheels,West,SMB,N

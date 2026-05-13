@@ -1,0 +1,9 @@
+Step,Asset,Action,Observation,Evidence Type,Follow-up Needed
+File upload,Lakehouse files,Reviewed uploaded raw files,,,
+Bronze review,Bronze tables,Reviewed raw data and visible issues,,,
+Full load validation,SQL endpoint,Ran full-load validation queries,,,
+Silver review,Silver tables,Reviewed cleansed accepted rows,,,
+Rejection review,Silver rejection table,Reviewed rejected rows and reasons,,,
+Gold review,Gold summary table,Reviewed aggregated outputs,,,
+Incremental review,Incremental notebook,Reviewed accepted and rejected incremental rows,,,
+Incremental validation,SQL endpoint,Ran incremental validation queries,,,
