@@ -1,4 +1,4 @@
-# Module 1 Lab: Fabric Basics for QA
+# Day 1 Lab: Fabric Basics for QA
 
 This lab is designed as a true end-to-end hands-on exercise. You will create a small Microsoft Fabric environment from scratch, load demo data, inspect the key Fabric items, and then validate the environment from a QA point of view.
 
@@ -72,8 +72,7 @@ Use these names during the lab:
 1. Open `support-files/templates/learner-worksheet.md`.
 2. Open `support-files/templates/evidence-log-template.csv`.
 3. Open `support-files/scenario/EXPECTED_RESULTS.md`.
-4. Open `support-files/sql/03_validation_queries.sql`.
-5. Keep those files available in a separate window or tab while you work.
+4. Keep those files available in a separate window or tab while you work.
 
 ## Exercise 1: Create the workspace and Lakehouse
 
@@ -86,7 +85,7 @@ In this exercise, you will create the Fabric workspace and the Lakehouse that wi
 3. In the left navigation menu, select **Workspaces**.
 4. Select **New workspace**.
 5. Enter the workspace name `ws_day1_contoso_outdoor`.
-6. In the description field, enter `Module 1 Fabric Basics for QA lab workspace`.
+6. In the description field, enter `Day 1 Fabric Basics for QA lab workspace`.
 7. Select a licensing mode that supports Fabric capacity in your environment.
 8. Create the workspace.
 9. When the workspace opens, verify that it is empty.
@@ -150,12 +149,57 @@ In this exercise, you will use the provided notebook script to create Lakehouse 
 
 ### Task 3: Paste and run the notebook code
 
-1. Open the local file `support-files/notebooks/01_load_lakehouse_tables.py`.
-2. Copy the full contents of the file.
-3. Paste the code into the first notebook cell.
-4. Run the notebook cell.
-5. Wait for the code to complete successfully.
-6. Review the final output, which should show counts for the created tables.
+1. Copy the full notebook code from the inline block below.
+2. Paste the code into the first notebook cell.
+3. Run the notebook cell.
+4. Wait for the code to complete successfully.
+5. Review the final output, which should show counts for the created tables.
+
+Inline notebook code:
+
+```python
+# Day 1 setup notebook
+# Attach this notebook to the Lakehouse `lh_day1_contoso`
+# before running the code.
+
+from pyspark.sql.functions import col, to_date, when
+
+base_path = "Files/day1-lab"
+
+customers_df = (
+    spark.read.option("header", True).csv(f"{base_path}/customers.csv")
+    .withColumn("IsActive", when(col("IsActive") == "Y", True).otherwise(False))
+)
+
+products_df = (
+    spark.read.option("header", True).csv(f"{base_path}/products.csv")
+    .withColumn("StandardPrice", col("StandardPrice").cast("double"))
+)
+
+sales_orders_df = (
+    spark.read.option("header", True).csv(f"{base_path}/sales_orders.csv")
+    .withColumn("OrderDate", to_date(col("OrderDate"), "yyyy-MM-dd"))
+    .withColumn("Quantity", col("Quantity").cast("int"))
+    .withColumn("UnitPrice", col("UnitPrice").cast("double"))
+    .withColumn("OrderAmount", col("OrderAmount").cast("double"))
+)
+
+customers_df.write.mode("overwrite").format("delta").saveAsTable("customers")
+products_df.write.mode("overwrite").format("delta").saveAsTable("products")
+sales_orders_df.write.mode("overwrite").format("delta").saveAsTable("sales_orders")
+
+display(
+    spark.sql(
+        """
+        SELECT 'customers' AS table_name, COUNT(*) AS row_count FROM customers
+        UNION ALL
+        SELECT 'products' AS table_name, COUNT(*) AS row_count FROM products
+        UNION ALL
+        SELECT 'sales_orders' AS table_name, COUNT(*) AS row_count FROM sales_orders
+        """
+    )
+)
+```
 
 ### Task 4: Verify the Lakehouse tables
 
@@ -182,11 +226,34 @@ In this exercise, you will query the Lakehouse through the SQL analytics endpoin
 
 ### Task 2: Run the validation queries
 
-1. Open the local file `support-files/sql/03_validation_queries.sql`.
-2. Copy the queries from the section named `LAKEHOUSE VALIDATION`.
-3. Paste the queries into the Lakehouse SQL query editor.
-4. Run the queries.
-5. Review the results carefully.
+1. Copy the `LAKEHOUSE VALIDATION` queries from the inline block below.
+2. Paste the queries into the Lakehouse SQL query editor.
+3. Run the queries.
+4. Review the results carefully.
+
+Inline Lakehouse validation queries:
+
+```sql
+SELECT COUNT(*) AS customer_count
+FROM customers;
+
+SELECT COUNT(*) AS product_count
+FROM products;
+
+SELECT COUNT(*) AS sales_order_count
+FROM sales_orders;
+
+SELECT CAST(SUM(OrderAmount) AS DECIMAL(18, 2)) AS total_order_amount
+FROM sales_orders;
+
+SELECT
+    OrderStatus,
+    COUNT(*) AS order_count,
+    CAST(SUM(OrderAmount) AS DECIMAL(18, 2)) AS total_order_amount
+FROM sales_orders
+GROUP BY OrderStatus
+ORDER BY OrderStatus;
+```
 
 ### Task 3: Confirm the expected results
 
@@ -219,24 +286,90 @@ In this exercise, you will create a Warehouse and load the same business data in
 ### Task 2: Create the Warehouse tables
 
 1. In the Warehouse, open a new SQL query window.
-2. Open the local file `support-files/sql/01_create_warehouse_tables.sql`.
-3. Copy the full contents of the script.
-4. Paste the script into the Warehouse SQL editor.
-5. Run the script.
-6. Refresh the schema browser if necessary.
-7. Confirm that these tables exist:
+2. Copy the full SQL script from the inline block below.
+3. Paste the script into the Warehouse SQL editor.
+4. Run the script.
+5. Refresh the schema browser if necessary.
+6. Confirm that these tables exist:
    - `dbo.Customers`
    - `dbo.Products`
    - `dbo.SalesOrders`
 
+Inline Warehouse table creation script:
+
+```sql
+DROP TABLE IF EXISTS dbo.SalesOrders;
+DROP TABLE IF EXISTS dbo.Products;
+DROP TABLE IF EXISTS dbo.Customers;
+
+CREATE TABLE dbo.Customers (
+    CustomerID VARCHAR(20) NOT NULL,
+    CustomerName VARCHAR(200) NOT NULL,
+    Region VARCHAR(50) NOT NULL,
+    CustomerType VARCHAR(50) NOT NULL,
+    IsActive CHAR(1) NOT NULL
+);
+
+CREATE TABLE dbo.Products (
+    ProductID VARCHAR(20) NOT NULL,
+    ProductName VARCHAR(200) NOT NULL,
+    Category VARCHAR(100) NOT NULL,
+    StandardPrice DECIMAL(18, 2) NOT NULL
+);
+
+CREATE TABLE dbo.SalesOrders (
+    OrderID VARCHAR(20) NOT NULL,
+    OrderDate DATE NOT NULL,
+    CustomerID VARCHAR(20) NOT NULL,
+    ProductID VARCHAR(20) NOT NULL,
+    Quantity INT NOT NULL,
+    UnitPrice DECIMAL(18, 2) NOT NULL,
+    OrderAmount DECIMAL(18, 2) NOT NULL,
+    OrderStatus VARCHAR(30) NOT NULL
+);
+```
+
 ### Task 3: Load the demo data
 
 1. Open a new SQL query window in the Warehouse.
-2. Open the local file `support-files/sql/02_load_demo_data.sql`.
-3. Copy the full contents of the script.
-4. Paste the script into the Warehouse SQL editor.
-5. Run the script.
-6. Wait until all insert statements finish successfully.
+2. Copy the full SQL script from the inline block below.
+3. Paste the script into the Warehouse SQL editor.
+4. Run the script.
+5. Wait until all insert statements finish successfully.
+
+Inline demo data load script:
+
+```sql
+INSERT INTO dbo.Customers (CustomerID, CustomerName, Region, CustomerType, IsActive) VALUES
+('C1001', 'Northwind Outfitters', 'North', 'Enterprise', 'Y'),
+('C1002', 'Contoso Bikes Store', 'West', 'Enterprise', 'Y'),
+('C1003', 'Alpine Sports Hub', 'South', 'SMB', 'Y'),
+('C1004', 'City Cycle House', 'East', 'SMB', 'Y'),
+('C1005', 'Summit Outdoor Retail', 'North', 'Enterprise', 'Y'),
+('C1006', 'Urban Wheels', 'West', 'SMB', 'Y');
+
+INSERT INTO dbo.Products (ProductID, ProductName, Category, StandardPrice) VALUES
+('P100', 'Trail Helmet', 'Accessories', 45.00),
+('P101', 'Road Bike', 'Bikes', 1200.00),
+('P102', 'Mountain Bike', 'Bikes', 1650.00),
+('P103', 'Cycling Jersey', 'Apparel', 60.00),
+('P104', 'Water Bottle', 'Accessories', 15.00),
+('P105', 'Commuter Bike', 'Bikes', 980.00);
+
+INSERT INTO dbo.SalesOrders (OrderID, OrderDate, CustomerID, ProductID, Quantity, UnitPrice, OrderAmount, OrderStatus) VALUES
+('SO10001', '2026-01-05', 'C1001', 'P101', 2, 1200.00, 2400.00, 'Shipped'),
+('SO10002', '2026-01-06', 'C1002', 'P103', 5, 60.00, 300.00, 'Shipped'),
+('SO10003', '2026-01-08', 'C1003', 'P104', 10, 15.00, 150.00, 'Processing'),
+('SO10004', '2026-01-10', 'C1004', 'P105', 1, 980.00, 980.00, 'Shipped'),
+('SO10005', '2026-01-11', 'C1005', 'P102', 1, 1650.00, 1650.00, 'Processing'),
+('SO10006', '2026-01-12', 'C1006', 'P100', 8, 45.00, 360.00, 'Cancelled'),
+('SO10007', '2026-01-14', 'C1001', 'P103', 12, 58.00, 696.00, 'Shipped'),
+('SO10008', '2026-01-15', 'C1002', 'P101', 1, 1180.00, 1180.00, 'Processing'),
+('SO10009', '2026-01-18', 'C1003', 'P105', 2, 950.00, 1900.00, 'Shipped'),
+('SO10010', '2026-01-20', 'C1004', 'P104', 20, 14.00, 280.00, 'Shipped'),
+('SO10011', '2026-01-22', 'C1005', 'P102', 2, 1600.00, 3200.00, 'Processing'),
+('SO10012', '2026-01-25', 'C1006', 'P100', 4, 45.00, 180.00, 'Shipped');
+```
 
 ## Exercise 6: Validate the Warehouse using SQL
 
@@ -245,11 +378,44 @@ In this exercise, you will confirm that the Warehouse was loaded correctly.
 ### Task 1: Run the validation queries
 
 1. Open a new SQL query window in the Warehouse.
-2. Open `support-files/sql/03_validation_queries.sql`.
-3. Copy the queries from the section named `WAREHOUSE VALIDATION`.
-4. Paste the queries into the Warehouse SQL editor.
-5. Run the queries.
-6. Review the results.
+2. Copy the `WAREHOUSE VALIDATION` queries from the inline block below.
+3. Paste the queries into the Warehouse SQL editor.
+4. Run the queries.
+5. Review the results.
+
+Inline Warehouse validation queries:
+
+```sql
+SELECT COUNT(*) AS customer_count
+FROM dbo.Customers;
+
+SELECT COUNT(*) AS product_count
+FROM dbo.Products;
+
+SELECT COUNT(*) AS sales_order_count
+FROM dbo.SalesOrders;
+
+SELECT CAST(SUM(OrderAmount) AS DECIMAL(18, 2)) AS total_order_amount
+FROM dbo.SalesOrders;
+
+SELECT
+    OrderStatus,
+    COUNT(*) AS order_count,
+    CAST(SUM(OrderAmount) AS DECIMAL(18, 2)) AS total_order_amount
+FROM dbo.SalesOrders
+GROUP BY OrderStatus
+ORDER BY OrderStatus;
+
+SELECT
+    c.Region,
+    COUNT(*) AS order_count,
+    CAST(SUM(s.OrderAmount) AS DECIMAL(18, 2)) AS total_order_amount
+FROM dbo.SalesOrders s
+INNER JOIN dbo.Customers c
+    ON s.CustomerID = c.CustomerID
+GROUP BY c.Region
+ORDER BY c.Region;
+```
 
 ### Task 2: Compare the results
 
@@ -325,7 +491,7 @@ In this exercise, you will inspect the Warehouse semantic layer and create one s
 
 If your environment does not allow report creation, document that limitation and continue.
 
-## Exercise 9: Perform the Module 1 QA review
+## Exercise 9: Perform the Day 1 QA review
 
 In this exercise, you will behave like a QA analyst and review the environment you just created.
 
