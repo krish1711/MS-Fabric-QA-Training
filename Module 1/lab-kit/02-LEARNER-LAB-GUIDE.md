@@ -1,4 +1,4 @@
-# Day 1 Lab: Fabric Basics for QA
+# Module 1 Lab: Fabric Basics for QA
 
 This lab is designed as a true end-to-end hands-on exercise. You will create a small Microsoft Fabric environment from scratch, load demo data, inspect the key Fabric items, and then validate the environment from a QA point of view.
 
@@ -86,7 +86,7 @@ In this exercise, you will create the Fabric workspace and the Lakehouse that wi
 3. In the left navigation menu, select **Workspaces**.
 4. Select **New workspace**.
 5. Enter the workspace name `ws_day1_contoso_outdoor`.
-6. In the description field, enter `Day 1 Fabric Basics for QA lab workspace`.
+6. In the description field, enter `Module 1 Fabric Basics for QA lab workspace`.
 7. Select a licensing mode that supports Fabric capacity in your environment.
 8. Create the workspace.
 9. When the workspace opens, verify that it is empty.
@@ -325,7 +325,7 @@ In this exercise, you will inspect the Warehouse semantic layer and create one s
 
 If your environment does not allow report creation, document that limitation and continue.
 
-## Exercise 9: Perform the Day 1 QA review
+## Exercise 9: Perform the Module 1 QA review
 
 In this exercise, you will behave like a QA analyst and review the environment you just created.
 

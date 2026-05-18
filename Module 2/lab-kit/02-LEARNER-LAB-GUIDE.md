@@ -1,4 +1,4 @@
-# Day 2 Lab: Data Validation & Quality Testing
+# Module 2 Lab: Data Validation & Quality Testing
 
 This lab is designed as a true end-to-end hands-on exercise. You will build a small medallion-style Fabric quality-testing environment, inspect raw defects, validate transformed outputs, and record QA evidence from top to bottom.
 
@@ -18,7 +18,7 @@ The raw data includes intentional issues so that you can practice:
 
 By the end of this lab, you should be able to:
 
-- create a Day 2 Fabric workspace and Lakehouse
+- create a Module 2 Fabric workspace and Lakehouse
 - load raw files into Bronze tables
 - inspect and explain quality issues in Bronze data
 - build Silver and Gold outputs
@@ -72,7 +72,7 @@ Use these names during the lab:
 
 ## Exercise 1: Create the workspace and Lakehouse
 
-In this exercise, you will create the Fabric workspace and Lakehouse that will hold the Day 2 demo data.
+In this exercise, you will create the Fabric workspace and Lakehouse that will hold the Module 2 demo data.
 
 ### Task 1: Create the workspace
 
@@ -81,7 +81,7 @@ In this exercise, you will create the Fabric workspace and Lakehouse that will h
 3. In the left navigation menu, select **Workspaces**.
 4. Select **New workspace**.
 5. Enter the workspace name `ws_day2_contoso_quality`.
-6. In the description field, enter `Day 2 Data Validation & Quality Testing lab workspace`.
+6. In the description field, enter `Module 2 Data Validation & Quality Testing lab workspace`.
 7. Select a licensing mode that supports Fabric capacity in your environment.
 8. Create the workspace.
 9. When the workspace opens, verify that it is empty.
@@ -733,7 +733,7 @@ ORDER BY Region;
 4. Record the results in your worksheet.
 5. In the evidence log, add one row describing the incremental validation results.
 
-## Exercise 9: Perform the Day 2 QA review
+## Exercise 9: Perform the Module 2 QA review
 
 In this exercise, you will behave like a QA analyst and summarize what happened in the data quality flow.
 
