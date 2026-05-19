@@ -1,4 +1,4 @@
-# Day 3 Lab: Lakehouse & Warehouse Testing
+# Module 3 Lab: Lakehouse & Warehouse Testing
 
 This lab is designed as a true end-to-end hands-on exercise. You will create a Fabric Lakehouse and Warehouse, generate Delta history in the Lakehouse, create Warehouse outputs using CTAS and MERGE, and then reconcile the final results.
 
@@ -71,7 +71,7 @@ Use these names during the lab:
 
 ## Exercise 1: Create the workspace, Lakehouse, and Warehouse
 
-In this exercise, you will create the main Fabric items for the Day 3 lab.
+In this exercise, you will create the main Fabric items for the Module 3 lab.
 
 ### Task 1: Create the workspace
 
@@ -80,7 +80,7 @@ In this exercise, you will create the main Fabric items for the Day 3 lab.
 3. In the left navigation menu, select **Workspaces**.
 4. Select **New workspace**.
 5. Enter the workspace name `ws_day3_contoso_lh_wh`.
-6. In the description field, enter `Day 3 Lakehouse and Warehouse Testing lab workspace`.
+6. In the description field, enter `Module 3 Lakehouse and Warehouse Testing lab workspace`.
 7. Select a licensing mode that supports Fabric capacity in your environment.
 8. Create the workspace.
 9. When the workspace opens, verify that it is empty.
@@ -645,7 +645,7 @@ FROM dbo.SalesOrders;
 4. Record the reconciliation result in your worksheet.
 5. In the evidence log, add one row describing the final reconciliation evidence.
 
-## Exercise 10: Complete the Day 3 QA review
+## Exercise 10: Complete the Module 3 QA review
 
 In this exercise, you will summarize what happened and turn it into QA findings and test ideas.
 
@@ -660,7 +660,7 @@ In your worksheet, answer the following:
 
 Then write one comparison statement summarizing the Lakehouse and Warehouse difference in QA terms.
 
-### Task 2: Record Day 3 test ideas
+### Task 2: Record Module 3 test ideas
 
 Write at least five QA test ideas based on this lab. Include examples such as:
 
