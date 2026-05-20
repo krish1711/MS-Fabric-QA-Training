@@ -1,4 +1,4 @@
-# Day 4 Lab: Pipeline, Semantic Model & Security Testing
+# Module 4 Lab: Pipeline, Semantic Model & Security Testing
 
 This lab is designed as a true end-to-end hands-on exercise. You will upload raw files, build a Fabric pipeline, inspect a controlled failure, rerun the repaired pipeline, validate a Warehouse-backed semantic model, create a report, and test row-level security.
 
@@ -73,7 +73,7 @@ Use these names during the lab:
 
 ## Exercise 1: Create the workspace and Lakehouse
 
-In this exercise, you will create the main Day 4 Fabric items and upload the raw files.
+In this exercise, you will create the main Module 4 Fabric items and upload the raw files.
 
 ### Task 1: Create the workspace
 
@@ -82,7 +82,7 @@ In this exercise, you will create the main Day 4 Fabric items and upload the raw
 3. In the left navigation menu, select **Workspaces**.
 4. Select **New workspace**.
 5. Enter the workspace name `ws_day4_contoso_pipeline_security`.
-6. In the description field, enter `Day 4 pipeline, semantic model, and security testing lab workspace`.
+6. In the description field, enter `Module 4 pipeline, semantic model, and security testing lab workspace`.
 7. Select a licensing mode that supports Fabric capacity in your environment.
 8. Create the workspace.
 9. When the workspace opens, verify that it is empty.
@@ -137,7 +137,7 @@ Curated-table notebook code:
 ```python
 from pyspark.sql.functions import col, count as spark_count, sum as spark_sum
 
-# Define the Lakehouse Files path that stores the Day 4 CSV inputs.
+# Define the Lakehouse Files path that stores the Module 4 CSV inputs.
 base_path = "Files/day4-lab"
 
 # Load raw CSV sources for customers, products, and orders.
@@ -690,7 +690,7 @@ In this exercise, you will summarize what you proved in the lab.
 2. Complete the sections for pipeline, semantic model, report, and security validation.
 3. Save your notes.
 
-### Task 2: Review the Day 4 test matrix
+### Task 2: Review the Module 4 test matrix
 
 1. Open `support-files/scenario/TEST_MATRIX.md`.
 2. Confirm that you completed at least one check in each category:
@@ -702,7 +702,7 @@ In this exercise, you will summarize what you proved in the lab.
 
 ### Task 3: Record the final outcome
 
-1. In your worksheet, write a short conclusion on whether the Day 4 scenario passed or failed QA.
+1. In your worksheet, write a short conclusion on whether the Module 4 scenario passed or failed QA.
 2. If you found any mismatch during the lab, record it as a defect or investigation note.
 
 ## Lab complete
